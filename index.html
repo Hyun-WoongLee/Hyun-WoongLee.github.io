@@ -1,0 +1,1213 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="author" content="Hyunwoong Lee">
+<title>Hyunwoong Lee</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%231a5568'/%3E%3Ctext x='32' y='41' font-family='Georgia,serif' font-size='26' text-anchor='middle' fill='%23ffffff'%3EHL%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..500&family=Source+Sans+3:ital,wght@0,400..600;1,400&family=Noto+Sans+KR:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500&text=%EC%9D%B4%ED%98%84%EC%9B%85&display=swap">
+<style>
+/* Layout: a CV-style reading page. A narrow left rail names each section and the content column carries the text. The hero pairs one research question with an ID-card panel. */
+:root {
+  --paper: #ffffff;
+  --panel: #f3f6f7;
+  --ink: #14232c;
+  --ink-soft: #3a4a54;
+  --muted: #5b6b75;
+  --rule: #d9e1e5;
+  --accent: #1a5568;
+  --accent-tint: #e4eef1;
+
+  --font-display: "Newsreader", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --font-body: "Source Sans 3", "Noto Sans KR", "Segoe UI", Roboto, "Helvetica Neue", "Apple SD Gothic Neo", "Malgun Gothic", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-ko: "Noto Serif KR", "AppleMyungjo", "Batang", serif;
+
+  --fs-xs: 0.8125rem;
+  --fs-sm: 0.9375rem;
+  --fs-base: 1.0625rem;
+  --fs-md: 1.25rem;
+  --fs-lg: 1.625rem;
+  --fs-xl: 2.125rem;
+  --fs-hero: clamp(2.25rem, 4.2vw + 0.6rem, 3.5rem);
+  --measure: 66ch;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0e1619;
+    --panel: #142026;
+    --ink: #e3eaed;
+    --ink-soft: #c0cdd2;
+    --muted: #94a6ae;
+    --rule: #24333a;
+    --accent: #8ac4d5;
+    --accent-tint: #173039;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --paper: #0e1619;
+  --panel: #142026;
+  --ink: #e3eaed;
+  --ink-soft: #c0cdd2;
+  --muted: #94a6ae;
+  --rule: #24333a;
+  --accent: #8ac4d5;
+  --accent-tint: #173039;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0 0 auto;
+  height: env(safe-area-inset-top, 0px);
+  z-index: 40;
+  background: var(--paper);
+}
+
+a {
+  color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+a:hover { text-decoration-thickness: 2px; }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+p, dl, dd { margin: 0; }
+
+ul, ol { margin: 0; padding: 0; list-style: none; }
+
+.wrap {
+  max-width: 1140px;
+  margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+@media (min-width: 720px) {
+  .wrap {
+    padding-left: max(40px, env(safe-area-inset-left, 0px));
+    padding-right: max(40px, env(safe-area-inset-right, 0px));
+  }
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+}
+
+.skip:focus {
+  left: 16px;
+  top: calc(env(safe-area-inset-top, 0px) + 8px);
+  z-index: 60;
+  padding: 8px 12px;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+}
+
+/* Header */
+.site-header {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 30;
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+}
+
+.header-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 32px;
+  padding-block: 14px;
+}
+
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.brand-en {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.brand-ko {
+  font-family: var(--font-ko);
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.site-nav {
+  display: flex;
+  gap: 4px 22px;
+  max-width: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.site-nav::-webkit-scrollbar { display: none; }
+
+.site-nav a {
+  padding-block: 4px;
+  border-bottom: 1px solid transparent;
+  font-size: var(--fs-sm);
+  color: var(--ink-soft);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.site-nav a:hover { color: var(--accent); }
+
+.site-nav a[aria-current="true"] {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+@media (max-width: 719px) {
+  .header-inner { padding-block: 10px 8px; }
+  .site-nav {
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 2px 18px;
+    overflow-x: visible;
+  }
+}
+
+/* Hero */
+.hero {
+  display: grid;
+  gap: 40px;
+  padding-block: 56px 64px;
+}
+
+@media (min-width: 900px) {
+  .hero {
+    grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.95fr);
+    align-items: start;
+    gap: 64px;
+    padding-block: 88px;
+  }
+}
+
+.hero-text { min-width: 0; }
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.hero h1 {
+  max-width: 18ch;
+  margin-top: 18px;
+  font-size: var(--fs-hero);
+  font-weight: 450;
+  line-height: 1.08;
+  letter-spacing: -0.012em;
+}
+
+.lead {
+  max-width: 52ch;
+  margin-top: 22px;
+  font-size: var(--fs-md);
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background: var(--paper);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.btn-primary {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--paper);
+}
+
+.btn-primary:hover { color: var(--paper); filter: brightness(1.08); }
+
+/* ID card */
+.id-card {
+  display: grid;
+  gap: 22px;
+  min-width: 0;
+  padding: 28px;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--panel);
+}
+
+.id-top {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.portrait {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 112px;
+  height: 112px;
+  overflow: hidden;
+  border-radius: 50%;
+  background: var(--accent-tint);
+}
+
+/* The photo sits above the monogram. Until profile.jpg exists in the repository, the monogram shows. */
+.portrait::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("profile.jpg") center / cover no-repeat;
+}
+
+.monogram {
+  font-family: var(--font-display);
+  font-size: 2.25rem;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+}
+
+.id-name { min-width: 0; }
+
+.name-en {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  line-height: 1.15;
+}
+
+.name-ko {
+  margin-top: 4px;
+  font-family: var(--font-ko);
+  color: var(--muted);
+}
+
+.roles {
+  display: grid;
+  gap: 14px;
+  padding-top: 20px;
+  border-top: 1px solid var(--rule);
+}
+
+.role dt { font-weight: 600; }
+
+.role dd {
+  margin-top: 2px;
+  font-size: var(--fs-sm);
+  color: var(--ink-soft);
+}
+
+.id-foot {
+  display: grid;
+  gap: 4px;
+  font-size: var(--fs-sm);
+  color: var(--muted);
+}
+
+.id-foot a {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  overflow-wrap: anywhere;
+}
+
+/* Sections */
+.section { scroll-margin-top: 84px; }
+
+@media (max-width: 719px) {
+  .section { scroll-margin-top: 132px; }
+}
+
+.section-inner {
+  display: grid;
+  gap: 20px 48px;
+  padding-block: 56px 64px;
+  border-top: 1px solid var(--rule);
+}
+
+@media (min-width: 900px) {
+  .section-inner {
+    grid-template-columns: 168px minmax(0, 1fr);
+    padding-block: 72px 80px;
+  }
+}
+
+.rail {
+  padding-top: 0.55rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.section-body {
+  display: grid;
+  gap: 28px;
+  min-width: 0;
+}
+
+.section-body > h2 {
+  font-size: var(--fs-xl);
+  font-weight: 450;
+  letter-spacing: -0.008em;
+}
+
+.prose {
+  display: grid;
+  gap: 18px;
+  max-width: var(--measure);
+}
+
+.prose p { color: var(--ink-soft); }
+
+.prose p:first-child {
+  font-size: var(--fs-md);
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+/* Research interests */
+.interests {
+  display: grid;
+  gap: 0 48px;
+}
+
+@media (min-width: 720px) {
+  .interests { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.interest {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  padding-block: 24px 28px;
+  border-top: 1px solid var(--rule);
+}
+
+.interest h3 { font-size: 1.375rem; }
+
+.interest p { color: var(--ink-soft); }
+
+.focus { font-size: var(--fs-sm); }
+
+.label {
+  margin-right: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* Projects */
+.projects { display: grid; }
+
+.project {
+  display: grid;
+  gap: 10px 32px;
+  padding-block: 24px;
+  border-top: 1px solid var(--rule);
+}
+
+.project:last-child { border-bottom: 1px solid var(--rule); }
+
+@media (min-width: 720px) {
+  .project { grid-template-columns: 172px minmax(0, 1fr); }
+}
+
+.project-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+}
+
+@media (min-width: 720px) {
+  .project-meta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.when {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.role-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 3px;
+  background: var(--accent-tint);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--accent);
+}
+
+.project-body { min-width: 0; }
+
+.project h3 {
+  font-size: 1.25rem;
+  text-wrap: pretty;
+}
+
+.project p.summary {
+  max-width: var(--measure);
+  margin-top: 8px;
+  color: var(--ink-soft);
+}
+
+/* Publications */
+.pub-group { display: grid; }
+
+.group-label {
+  margin-bottom: 10px;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.refs { display: grid; }
+
+.ref {
+  display: grid;
+  gap: 6px 32px;
+  padding-block: 18px;
+  border-top: 1px solid var(--rule);
+}
+
+.refs .ref:last-child { border-bottom: 1px solid var(--rule); }
+
+@media (min-width: 720px) {
+  .ref { grid-template-columns: 172px minmax(0, 1fr); }
+}
+
+.ref-type {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Korean text wraps between words, not inside them */
+[lang="ko"] { word-break: keep-all; }
+
+/* APA 7 hanging indent */
+.ref-text {
+  min-width: 0;
+  max-width: 74ch;
+  padding-left: 1.75em;
+  text-indent: -1.75em;
+  color: var(--ink-soft);
+  overflow-wrap: anywhere;
+}
+
+.ref-text .me {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.note {
+  font-size: var(--fs-sm);
+  color: var(--muted);
+}
+
+/* Background */
+.bg-stack {
+  display: grid;
+  gap: 40px;
+}
+
+.bg-block { display: grid; }
+
+.entries { display: grid; }
+
+.entry {
+  display: grid;
+  gap: 2px 24px;
+  padding-block: 14px;
+  border-top: 1px solid var(--rule);
+}
+
+.bg-block .entries .entry:last-child { border-bottom: 1px solid var(--rule); }
+
+@media (min-width: 720px) {
+  .entry { grid-template-columns: 172px minmax(0, 1fr); column-gap: 32px; }
+}
+
+.entry .what {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.entry .title {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.entry .detail {
+  font-size: var(--fs-sm);
+  color: var(--ink-soft);
+}
+
+.entry .detail i { font-style: italic; }
+
+/* Contact */
+.contact-text {
+  max-width: var(--measure);
+  color: var(--ink-soft);
+}
+
+.contact-mail {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3.2vw, 2.4rem);
+  font-weight: 450;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.contact-mail a { text-decoration: none; }
+
+.contact-mail a:hover { text-decoration: underline; }
+
+.contact-aff {
+  display: grid;
+  gap: 4px;
+  font-size: var(--fs-sm);
+  color: var(--ink-soft);
+}
+
+/* Footer */
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 24px;
+  padding-block: 28px 40px;
+  border-top: 1px solid var(--rule);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="#top" aria-label="Hyunwoong Lee, back to top">
+      <span class="brand-en">Hyunwoong Lee</span>
+      <span class="brand-ko" lang="ko">이현웅</span>
+    </a>
+    <nav class="site-nav" aria-label="Sections">
+      <a href="#about">About</a>
+      <a href="#research">Research</a>
+      <a href="#projects">Projects</a>
+      <a href="#publications">Publications</a>
+      <a href="#background">Background</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero wrap" id="top" aria-labelledby="hero-title">
+    <div class="hero-text">
+      <p class="eyebrow">Educational Technology · Science of Learning</p>
+      <h1 id="hero-title">How can learners learn and self-regulate with AI?</h1>
+      <p class="lead">I study critical AI literacy, asking how learners can evaluate and verify the information AI provides. I also study self-regulation in digital learning environments that helps learners prevent AI dependency and digital addiction and achieve self-directed learning with AI and digital well-being.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#research">Research interests</a>
+        <a class="btn" href="#publications">Publications</a>
+        <a class="btn" href="#contact">Contact</a>
+      </div>
+    </div>
+
+    <aside class="id-card" aria-label="Profile">
+      <div class="id-top">
+        <div class="portrait" role="img" aria-label="Portrait of Hyunwoong Lee">
+          <span class="monogram" aria-hidden="true">HL</span>
+        </div>
+        <div class="id-name">
+          <p class="name-en">Hyunwoong Lee</p>
+          <p class="name-ko" lang="ko">이현웅</p>
+        </div>
+      </div>
+      <dl class="roles">
+        <div class="role">
+          <dt>Postdoctoral Researcher</dt>
+          <dd>Sungkyun EduTech Research Institute, Sungkyunkwan University</dd>
+        </div>
+        <div class="role">
+          <dt>Lecturer</dt>
+          <dd>Department of Education, Seoul National University</dd>
+        </div>
+      </dl>
+      <div class="id-foot">
+        <p>Ph.D. in Educational Technology, Seoul National University</p>
+        <p>Seoul, South Korea</p>
+        <p><a href="mailto:leehw@snu.ac.kr">leehw@snu.ac.kr</a></p>
+      </div>
+    </aside>
+  </section>
+
+  <section class="section" id="about" aria-labelledby="about-title">
+    <div class="wrap">
+      <div class="section-inner">
+        <p class="rail">About</p>
+        <div class="section-body">
+          <h2 id="about-title">Studying learning alongside AI</h2>
+          <div class="prose">
+            <p>In the society of the future, AI will be even more capable than it is today. Yet however far it advances, AI cannot replace people, and people cannot simply depend on it. As learners co-evolve with AI, they must learn to coexist and collaborate with it. My research addresses this through two topics.</p>
+            <p>The first is critical AI literacy. To collaborate well with AI, learners must be able to judge which parts of the information AI provides are factual and trust it only as far as the evidence allows, rather than accepting it without question. I examine whether people accept information from humans and from AI in the same way and, if they do not, how and why their responses differ. To find out, I gather several kinds of evidence, including brain activation.</p>
+            <p>The second is self-regulation in digital learning environments. Discerning the facts in AI-generated information is not the end of the story. To keep learning with AI, learners must decide how far to rely on AI and digital devices, and must regulate the negative emotions that AI hallucinations and errors can trigger. I study how to support this self-regulation, including how learners should perceive AI, so that they can prevent AI dependency and digital addiction and achieve self-directed learning with AI and digital well-being.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="research" aria-labelledby="research-title">
+    <div class="wrap">
+      <div class="section-inner">
+        <p class="rail">Research</p>
+        <div class="section-body">
+          <h2 id="research-title">Research interests</h2>
+          <div class="interests">
+            <article class="interest">
+              <h3>Critical AI literacy and human–AI interaction</h3>
+              <p>Do learners accept information from humans and from AI in the same way? If not, how and why do their responses differ?</p>
+              <p class="focus"><span class="label">Focus</span>Trust in information provided by humans and by AI</p>
+            </article>
+            <article class="interest">
+              <h3>Educational neuroscience and the science of learning</h3>
+              <p>What can brain activation, read alongside other evidence, tell us about how learners evaluate information and regulate themselves?</p>
+              <p class="focus"><span class="label">Focus</span>Brain activation measured with fNIRS</p>
+            </article>
+            <article class="interest">
+              <h3>Multimodal learning analytics</h3>
+              <p>How can multimodal data from learning platforms and research equipment be collected and analyzed systematically to understand learning and development?</p>
+              <p class="focus"><span class="label">Focus</span>Multimodal data from research equipment, learning activity metrics from AI platforms, and online discussion data</p>
+            </article>
+            <article class="interest">
+              <h3>Self-regulated learning in AIED</h3>
+              <p>How can learners regulate their learning in digital environments to prevent AI dependency and digital addiction and to achieve self-directed learning with AI and digital well-being?</p>
+              <p class="focus"><span class="label">Focus</span>AI-based English learning apps and dialogue with generative AI</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="projects" aria-labelledby="projects-title">
+    <div class="wrap">
+      <div class="section-inner">
+        <p class="rail">Projects</p>
+        <div class="section-body">
+          <h2 id="projects-title">Research projects</h2>
+          <div class="projects">
+            <article class="project">
+              <div class="project-meta">
+                <p class="when">2025</p>
+                <p class="role-tag">Project manager</p>
+              </div>
+              <div class="project-body">
+                <h3>Developing Research Method Guidelines and Cases for Multimodal Data in the Learning Sciences</h3>
+                <p class="summary">This project developed concrete guidelines and research cases for systematically collecting and effectively analyzing multimodal data with learning sciences research equipment. It aimed to encourage interest in learning sciences research and the effective use of research equipment.</p>
+              </div>
+            </article>
+            <article class="project">
+              <div class="project-meta">
+                <p class="when">2024</p>
+                <p class="role-tag">Project manager</p>
+              </div>
+              <div class="project-body">
+                <h3>Defining Competencies and Indicators for Analyzing an AI Teaching and Learning Platform</h3>
+                <p class="summary">This project aimed to derive competencies for learning analytics, develop metrics for the learning activities that occur on an AI teaching and learning platform, check that the research findings were incorporated, and evaluate the dashboard that presents learning outcomes.</p>
+              </div>
+            </article>
+            <article class="project">
+              <div class="project-meta">
+                <p class="when">2024</p>
+                <p class="role-tag">Project manager</p>
+              </div>
+              <div class="project-body">
+                <h3>Developing a New Course, Veritas Course 1: Self and Community Through Learning</h3>
+                <p class="summary">Learning spans many domains and levels, so understanding it requires an interdisciplinary approach. The course <i>Scientific Understanding of Learning</i> is organized around five content domains (understanding learning, cognitive activity, emotions in learning, learners, and learning innovation) and three levels of learning (brain, individual, and community). The content domains set the weekly lecture topics, and three instructors divide the three levels among themselves. Through collaborative team teaching, each weekly topic is taught at all three levels, which fosters interdisciplinary understanding and in-depth discussion.</p>
+              </div>
+            </article>
+            <article class="project">
+              <div class="project-meta">
+                <p class="when">2024</p>
+                <p class="role-tag">Project manager</p>
+              </div>
+              <div class="project-body">
+                <h3>Investigating AI Tools and Teaching Cases for Hyper-Personalized Learning</h3>
+                <p class="summary">This project surveyed AI tools that support learner-centered, hyper-personalized learning and analyzed how these tools are used in university classrooms. Drawing on activity theory, it also analyzed the contradictions among system elements that arise when university instructors bring AI tools into their courses, and proposed solutions.</p>
+              </div>
+            </article>
+            <article class="project">
+              <div class="project-meta">
+                <p class="when">2024</p>
+                <p class="role-tag">Research assistant</p>
+              </div>
+              <div class="project-body">
+                <h3>Learning and Development Research Using Multimodal Data (Phase 1)</h3>
+                <p class="summary">Collecting multimodal data on learners’ cognitive, affective, and physical development over time makes it possible to study developmental processes scientifically and to analyze the many factors that influence learning. For example, home and school environments can affect learners’ brain development, widening educational gaps and contributing to underachievement. The longitudinal data also make it possible to analyze how the age at which learners use digital technology, and how often they use it, affect literacy.</p>
+              </div>
+            </article>
+            <article class="project">
+              <div class="project-meta">
+                <p class="when">2024</p>
+                <p class="role-tag">Project manager</p>
+              </div>
+              <div class="project-body">
+                <h3>Establishing a Development Plan for the Learning Sciences Research Institute</h3>
+                <p class="summary">This study is significant in that it set out the vision and development directions for the first learning sciences research institute established in Korea. It sought concrete strategies for the institute to grow into a world-class research institution that leads future education on the basis of a scientific understanding of learning and practical prescriptions. It is hoped that the proposed plan will be implemented and bring about educational innovation in which every learner’s potential is fully realized.</p>
+              </div>
+            </article>
+            <article class="project">
+              <div class="project-meta">
+                <p class="when">2023</p>
+                <p class="role-tag">Principal investigator</p>
+              </div>
+              <div class="project-body">
+                <h3>Research Project Awarded by NAVER Connect Foundation (Independent Research)</h3>
+                <p class="summary">This project analyzed discussion interaction data collected through Slack while learners studied on an AI learning platform, and proposed effective online learning strategies.</p>
+              </div>
+            </article>
+            <article class="project">
+              <div class="project-meta">
+                <p class="when">2023</p>
+                <p class="role-tag">Research assistant</p>
+              </div>
+              <div class="project-body">
+                <h3>A Systematic Integration Plan for the Efficient Use of Online Content at Seoul National University</h3>
+                <p class="summary">To develop interdisciplinary talent who will shape the future and contribute to society, Seoul National University needs to build an AI-based online education system and strengthen personalized education. This study proposed ways to develop online content systematically and manage it efficiently. It (1) reviewed exemplary online education cases in Korea and abroad, (2) identified the online content held by various units, and (3) analyzed the needs of instructors, learners, and staff regarding content development, use, and management. Based on these results, it (4) proposed improvements for integrating and using online content.</p>
+              </div>
+            </article>
+            <article class="project">
+              <div class="project-meta">
+                <p class="when">2022</p>
+                <p class="role-tag">Research assistant</p>
+              </div>
+              <div class="project-body">
+                <h3>Learning Effects of AI-Based English Education Apps</h3>
+                <p class="summary">This study examined the effectiveness of AI-based English education apps in online and face-to-face learning environments and explored learning strategies for using these apps.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="publications" aria-labelledby="publications-title">
+    <div class="wrap">
+      <div class="section-inner">
+        <p class="rail">Publications</p>
+        <div class="section-body">
+          <h2 id="publications-title">Publications and presentations</h2>
+
+          <div class="pub-group">
+            <h3 class="group-label">Journal articles</h3>
+            <ul class="refs">
+              <li class="ref">
+                <p class="ref-type">2026</p>
+                <p class="ref-text"><span class="me">Lee, H.</span>, &amp; Yoon, B. (2026). <span lang="ko">문제해결력 향상을 위한 초등 사회과 AI 융합 수업 개발 및 적용: 지역 문제해결 활동을 중심으로</span> [Development and application of an AI-integrated elementary social studies lesson for improving problem-solving ability: Centered on regional problem-solving activities]. <i lang="ko">초등교육연구논총</i>, <i>42</i>(3), 87–108. <a href="https://doi.org/10.23103/dnueje.2026.42.3.87">https://doi.org/10.23103/dnueje.2026.42.3.87</a></p>
+              </li>
+              <li class="ref">
+                <p class="ref-type">2026</p>
+                <p class="ref-text">Sohn, E. J., Kim, S., Lim, J., &amp; <span class="me">Lee, H.</span> (2026). <span lang="ko">국내 K-12 특수교육에서의 생성형 AI 활용에 관한 체계적 문헌고찰</span> [A systematic review of generative AI use in K-12 Korean special education]. <i lang="ko">특수교육학연구</i>, <i>61</i>(2), 215–245. <a href="https://doi.org/10.15861/kjse.2026.61.2.215">https://doi.org/10.15861/kjse.2026.61.2.215</a></p>
+              </li>
+              <li class="ref">
+                <p class="ref-type">2026</p>
+                <p class="ref-text">Kwon, H., Lee, K., Hong, J., Bae, S., &amp; <span class="me">Lee, H.</span> (2026). <span lang="ko">디자인씽킹 방법론을 적용한 생성형 AI 기반 교사-학부모 상담 시뮬레이션 시스템 개발 연구</span> [Development of a generative AI-based teacher-parent counseling simulation system using a design thinking approach]. <i lang="ko">교육정보미디어연구</i>, <i>32</i>(3), 1439–1471. <a href="https://doi.org/10.15833/kaeim.2026.32.3.013">https://doi.org/10.15833/kaeim.2026.32.3.013</a></p>
+              </li>
+              <li class="ref">
+                <p class="ref-type">2026</p>
+                <p class="ref-text">Lim, E., <span class="me">Lee, H.</span>, &amp; Choi, Y. (2026). ChatGPT in educational research: A case study of graduate students’ use and ethical perceptions. <i>Future in Educational Research</i>, <i>4</i>(3), 289–302. <a href="https://doi.org/10.1002/fer3.70043">https://doi.org/10.1002/fer3.70043</a></p>
+              </li>
+              <li class="ref">
+                <p class="ref-type">2026</p>
+                <p class="ref-text"><span class="me">Lee, H.</span>, &amp; Kang, J.-S. (2026). <span lang="ko">의한협진을 위한 간호직무교육 프로그램 개발 연구: RPISD 모형 적용을 중심으로</span> [A study on applying the RPISD model to develop a nursing job training program for Korean-western collaborative treatment]. <i lang="ko">교육정보미디어연구</i>, <i>32</i>(2), 961–987. <a href="https://doi.org/10.15833/kafeiam.32.2.961">https://doi.org/10.15833/kafeiam.32.2.961</a></p>
+              </li>
+              <li class="ref">
+                <p class="ref-type">2026</p>
+                <p class="ref-text"><span class="me">Lee, H.</span>, Lee, J., Xie, Y., Park, H.-J., &amp; Cho, Y. H. (2026). <span lang="ko">AI 교수학습 플랫폼 기반 학생 역량 평가를 위한 학습분석 지표 개발 연구</span> [Development of learning analytics indicators for competency assessment in AI-based learning platforms]. <i lang="ko">교육정보미디어연구</i>, <i>32</i>(1), 349–383. <a href="https://doi.org/10.15833/kafeiam.32.1.349">https://doi.org/10.15833/kafeiam.32.1.349</a></p>
+              </li>
+              <li class="ref">
+                <p class="ref-type">2025</p>
+                <p class="ref-text"><span class="me">Lee, H.</span>, Jeong, S., Kim, Y., &amp; Cho, Y. H. (2025). <span lang="ko">생성형 AI 활용 대학교육에 대한 교수자의 인식: 활동체제 모형을 중심으로</span> [University instructors’ perspectives of generative AI-integrated higher education: Focusing on activity system model]. <i lang="ko">교육정보미디어연구</i>, <i>31</i>(6), 2541–2564. <a href="https://doi.org/10.15833/kafeiam.31.6.2541">https://doi.org/10.15833/kafeiam.31.6.2541</a></p>
+              </li>
+              <li class="ref">
+                <p class="ref-type">2025</p>
+                <p class="ref-text">Jeong, S., <span class="me">Lee, H.</span>, &amp; Cho, Y. H. (2025). <span lang="ko">생성형 AI 활용 대학 수업에서 학습자가 경험하는 모순과 대응 양상: 활동이론의 관점에서</span> [Contradictions and coping strategies experienced by learners in generative AI-integrated university classes: An activity theory perspective]. <i lang="ko">교육과학연구</i>, <i>56</i>(3), 177–200. <a href="https://doi.org/10.15854/jes.2025.09.56.3.177">https://doi.org/10.15854/jes.2025.09.56.3.177</a></p>
+              </li>
+              <li class="ref">
+                <p class="ref-type">2025</p>
+                <p class="ref-text"><span class="me">Lee, H.</span>, Kim, S., Guo, X., &amp; Lim, C. (2025). <span lang="ko">머신러닝 이해 및 활용을 위한 초등 AI 융합 수업 모형 및 설계원리 개발</span> [Development of AI-integrated instructional model and design principles for elementary students’ understanding and application of machine learning]. <i lang="ko">교육정보미디어연구</i>, <i>31</i>(3), 1021–1051. <a href="https://doi.org/10.15833/kafeiam.31.3.1021">https://doi.org/10.15833/kafeiam.31.3.1021</a></p>
+              </li>
+              <li class="ref">
+                <p class="ref-type">2024</p>
+                <p class="ref-text">Lee, U., Jeong, Y., Koh, J., Byun, G., Lee, Y., <span class="me">Lee, H.</span>, Eun, S., Moon, J., Lim, C., &amp; Kim, H. (2024). I see you: Teacher analytics with GPT-4 vision-powered observational assessment. <i>Smart Learning Environments</i>, <i>11</i>(1), Article 48. <a href="https://doi.org/10.1186/s40561-024-00335-4">https://doi.org/10.1186/s40561-024-00335-4</a></p>
+              </li>
+            </ul>
+          </div>
+
+          <div class="pub-group">
+            <h3 class="group-label">Conference proceedings</h3>
+            <ul class="refs">
+              <li class="ref">
+                <p class="ref-type">2024</p>
+                <p class="ref-text">Jang, J., Eun, S., <span class="me">Lee, H.</span>, Choi, J., &amp; Cho, Y. H. (2024). The effects of prompt scaffolding on learning to write arguments with ChatGPT. In R. Lindgren, T. I. Asino, E. A. Kyza, C.-K. Looi, D. T. Keifert, &amp; E. Suárez (Eds.), <i>Proceedings of the 18th International Conference of the Learning Sciences - ICLS 2024</i> (pp. 1502–1505). International Society of the Learning Sciences. <a href="https://doi.org/10.22318/icls2024.831011">https://doi.org/10.22318/icls2024.831011</a></p>
+              </li>
+            </ul>
+          </div>
+
+          <div class="pub-group">
+            <h3 class="group-label">Manuscripts submitted for publication</h3>
+            <ul class="refs">
+              <li class="ref">
+                <p class="ref-type">Submitted</p>
+                <p class="ref-text"><span class="me">Lee, H.</span>, Shin, B., Jo, Y., Park, S., &amp; Cho, Y. H. (2026). <i>A comparative analysis of trust and judgment in human- and AI-labeled information: Evidence from behavioral and neural measures</i> [Manuscript submitted for publication]. Department of Education, Seoul National University.</p>
+              </li>
+              <li class="ref">
+                <p class="ref-type">Submitted</p>
+                <p class="ref-text"><span class="me">Lee, H.</span>, Moon, J., Lim, J., Lee, J., Pang, K. M., &amp; Ihm, J. (2026). <i>Designing for trust in black-box AI: Effects of a RAG-based AI tutor chatbot on AI trust, learning engagement, and academic achievement in health professions education</i> [Manuscript submitted for publication]. Department of Education, Seoul National University.</p>
+              </li>
+              <li class="ref">
+                <p class="ref-type">Submitted</p>
+                <p class="ref-text"><span class="me">Lee, H.</span>, Jang, H., Kim, M. S., &amp; Cho, Y. H. (2026). <i>Learning activity patterns and achievement in AI-based English learning: An exploratory analysis of behavioural log data</i> [Manuscript submitted for publication]. Department of Education, Seoul National University.</p>
+              </li>
+            </ul>
+          </div>
+
+          <div class="pub-group">
+            <h3 class="group-label">Conference presentations</h3>
+            <ul class="refs">
+              <li class="ref">
+                <p class="ref-type">2026 · Paper</p>
+                <p class="ref-text"><span class="me">Lee, H.</span>, &amp; Cho, Y. H. (2026). <i>The effects of generative AI-based personalized Socratic questioning on cognitive engagement and critical thinking</i> [Paper presentation]. Korean Society for Educational Technology 2026 Spring Conference, Seoul, South Korea.</p>
+              </li>
+              <li class="ref">
+                <p class="ref-type">2025 · Paper</p>
+                <p class="ref-text"><span class="me">Lee, H.</span>, Shin, B., Jo, Y., Park, S., &amp; Cho, Y. H. (2025, November 8). <i>Trust and accuracy in veracity judgments of AI-generated information</i> [Paper presentation]. Joint Fall Conference of the Korean Society for Educational Technology and the Korean Association for Educational Information and Media, Seoul, South Korea.</p>
+              </li>
+              <li class="ref">
+                <p class="ref-type">2025 · Paper</p>
+                <p class="ref-text">Han, Y., <span class="me">Lee, H.</span>, &amp; Cho, Y. H. (2025, November 8). <i>Effects of generative AI-supported self-explanation on video-based learning</i> [Paper presentation]. Joint Fall Conference of the Korean Society for Educational Technology and the Korean Association for Educational Information and Media, Seoul, South Korea.</p>
+              </li>
+              <li class="ref">
+                <p class="ref-type">2025 · Paper</p>
+                <p class="ref-text"><span class="me">Lee, H.</span>, Eun, S., &amp; Cho, Y. H. (2025, July 11–13). <i>Relationships between learning behaviors and achievement in AI-based EFL learning app</i> [Paper presentation]. 23rd AsiaTEFL International Conference, Hong Kong.</p>
+              </li>
+              <li class="ref">
+                <p class="ref-type">2025 · Paper</p>
+                <p class="ref-text">Jeong, S., <span class="me">Lee, H.</span>, Kim, Y., &amp; Cho, Y. H. (2025). <i>Contradictions and regulation patterns experienced by university students in generative AI-supported classes</i> [Paper presentation]. Annual Conference of the Korean Educational Research Association, Seoul, South Korea.</p>
+              </li>
+              <li class="ref">
+                <p class="ref-type">2025 · Paper</p>
+                <p class="ref-text"><span class="me">Lee, H.</span>, Jeong, S., Kim, Y., &amp; Cho, Y. H. (2025). <i>Perceptions of university instructors on generative AI-supported instructional systems</i> [Paper presentation]. Korean Association for Educational Information and Media 2025 Spring Conference, Seoul, South Korea.</p>
+              </li>
+              <li class="ref">
+                <p class="ref-type">2024 · Paper</p>
+                <p class="ref-text"><span class="me">Lee, H.</span>, Jang, H., Kim, M., &amp; Cho, Y. H. (2024, June). <i>A study on the relationship between AI support and academic achievement in AI-based English learning</i> [Paper presentation]. Korean Society for Educational Technology 2024 Spring Conference, Daejeon, South Korea.</p>
+              </li>
+              <li class="ref">
+                <p class="ref-type">2024 · Poster</p>
+                <p class="ref-text">Jang, H. W., <span class="me">Lee, H.</span>, Cho, Y. H., &amp; Kim, M. (2024, June). <i>A systematic review of AI-powered mobile-assisted language learning</i> [Poster session]. Canadian Society for the Study of Education 2024 Annual Conference, Montréal, QC, Canada.</p>
+              </li>
+              <li class="ref">
+                <p class="ref-type">2023 · Poster</p>
+                <p class="ref-text"><span class="me">Lee, H.</span>, Park, S., Jang, J., &amp; Cho, Y. H. (2023, June). <i>Exploring self-regulated learning strategies using AI-based English education apps</i> [Poster session]. Korean Society for Educational Technology 2023 Spring Conference, Jeju, South Korea.</p>
+              </li>
+            </ul>
+          </div>
+
+          <p class="note">References follow APA Style, 7th edition. Korean-language journal articles show the original Korean title followed by the English title in brackets.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="background" aria-labelledby="background-title">
+    <div class="wrap">
+      <div class="section-inner">
+        <p class="rail">Background</p>
+        <div class="section-body">
+          <h2 id="background-title">Background</h2>
+          <div class="bg-stack">
+              <div class="bg-block">
+                <h3 class="group-label">Appointments</h3>
+                <ul class="entries">
+                  <li class="entry">
+                    <p class="when">2026 – present</p>
+                    <div class="what">
+                      <p class="title">Postdoctoral Researcher</p>
+                      <p class="detail">Sungkyun EduTech Research Institute, Sungkyunkwan University</p>
+                    </div>
+                  </li>
+                  <li class="entry">
+                    <p class="when">Sep 2024 – present</p>
+                    <div class="what">
+                      <p class="title">Lecturer</p>
+                      <p class="detail">Department of Education, Seoul National University</p>
+                    </div>
+                  </li>
+                  <li class="entry">
+                    <p class="when">Nov 2023 – Aug 2024</p>
+                    <div class="what">
+                      <p class="title">Teaching Assistant</p>
+                      <p class="detail">Online Education Department, Center for Teaching and Learning, Seoul National University</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="bg-block">
+                <h3 class="group-label">Education</h3>
+                <ul class="entries">
+                  <li class="entry">
+                    <p class="when">2026</p>
+                    <div class="what">
+                      <p class="title">Ph.D. in Educational Technology</p>
+                      <p class="detail">Department of Education, Seoul National University</p>
+                      <p class="detail">Dissertation: <i>The Effects of Generative AI-Based Personalized Socratic Questioning on Cognitive Engagement and Critical Thinking</i></p>
+                      <p class="detail">Advisor: Young Hoan Cho</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="bg-block">
+                <h3 class="group-label">Instructional design and development</h3>
+                <ul class="entries">
+                  <li class="entry">
+                    <p class="when">2024</p>
+                    <div class="what">
+                      <p class="title">Instructional Developer, Wonkwang University</p>
+                      <p class="detail">Developed an emergency medicine textbook.</p>
+                    </div>
+                  </li>
+                  <li class="entry">
+                    <p class="when">2024</p>
+                    <div class="what">
+                      <p class="title">Instructional Developer, Seoul National University</p>
+                      <p class="detail">Developed an AI and art convergence education program that uses AI as a docent in art appreciation classes.</p>
+                    </div>
+                  </li>
+                  <li class="entry">
+                    <p class="when">2023</p>
+                    <div class="what">
+                      <p class="title">Instructional Developer, Seoul National University</p>
+                      <p class="detail">Developed an AI convergence instructional model for elementary schools and design principles for understanding machine learning.</p>
+                    </div>
+                  </li>
+                  <li class="entry">
+                    <p class="when">2022</p>
+                    <div class="what">
+                      <p class="title">Instructional Developer, Seoul National University and Wonkwang University</p>
+                      <p class="detail">Developed a nursing education program for Korean medicine treatment.</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="bg-block">
+                <h3 class="group-label">Professional service</h3>
+                <ul class="entries">
+                  <li class="entry">
+                    <p class="when">Jun 2023 – May 2024</p>
+                    <div class="what">
+                      <p class="title">Vice President</p>
+                      <p class="detail">Educational Technology Society, Seoul National University</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="bg-block">
+                <h3 class="group-label">Honors and awards</h3>
+                <ul class="entries">
+                  <li class="entry">
+                    <p class="when">2025</p>
+                    <div class="what">
+                      <p class="title">Research Grant (BK21 JR Priming)</p>
+                      <p class="detail">Seoul National University</p>
+                    </div>
+                  </li>
+                  <li class="entry">
+                    <p class="when">2023</p>
+                    <div class="what">
+                      <p class="title">Research Grant (BK21 JR Priming)</p>
+                      <p class="detail">Seoul National University</p>
+                    </div>
+                  </li>
+                  <li class="entry">
+                    <p class="when">2023</p>
+                    <div class="what">
+                      <p class="title">Award, Public Data Utilization Competition</p>
+                      <p class="detail">Seoul Metropolitan Office of Education</p>
+                    </div>
+                  </li>
+                  <li class="entry">
+                    <p class="when">2023</p>
+                    <div class="what">
+                      <p class="title">Award, AI Convergence Content Development Competition</p>
+                      <p class="detail">Seoul National University</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="bg-block">
+                <h3 class="group-label">Licensure</h3>
+                <ul class="entries">
+                  <li class="entry">
+                    <p class="when">Feb 2018</p>
+                    <div class="what">
+                      <p class="title">Elementary Education Certification</p>
+                      <p class="detail">Ministry of Education, South Korea</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact" aria-labelledby="contact-title">
+    <div class="wrap">
+      <div class="section-inner">
+        <p class="rail">Contact</p>
+        <div class="section-body">
+          <h2 id="contact-title">Contact</h2>
+          <p class="contact-text">For research collaboration or questions about my work, please write to me by email.</p>
+          <p class="contact-mail"><a href="mailto:leehw@snu.ac.kr">leehw@snu.ac.kr</a></p>
+          <div class="contact-aff">
+            <p>Sungkyun EduTech Research Institute, Sungkyunkwan University</p>
+            <p>Department of Education, Seoul National University</p>
+            <p>Seoul, South Korea</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-inner">
+      <p>© 2026 Hyunwoong Lee</p>
+      <p>Updated October 2026</p>
+    </div>
+  </div>
+</footer>
+<script>
+(function () {
+  var links = Array.prototype.slice.call(document.querySelectorAll('.site-nav a[href^="#"]'));
+  if (!('IntersectionObserver' in window) || !links.length) return;
+  var byId = {};
+  links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      links.forEach(function (a) { a.removeAttribute('aria-current'); });
+      var link = byId[entry.target.id];
+      if (link) link.setAttribute('aria-current', 'true');
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  Object.keys(byId).forEach(function (id) {
+    var section = document.getElementById(id);
+    if (section) observer.observe(section);
+  });
+})();
+</script>
+</body>
+</html>
